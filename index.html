@@ -170,7 +170,7 @@ function renderLogin(showError) {
     <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center;">we will never share your email with anyone else</p>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="passInp" placeholder="Enter Password" oninput="this.classList.remove('invalid')">
+      <input type="password" id="passInp" value="${userData.pass}" placeholder="Enter Password" oninput="this.classList.remove('invalid')">
     </div>
   `;
   const btn = document.getElementById('mainBtn');
